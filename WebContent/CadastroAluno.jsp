@@ -10,7 +10,7 @@
 <jsp:include page="menu.jsp"></jsp:include>
 
 <div class="container bemvindo">
-	<h1>Seja bemvindo</h1>
+	<h1>Cadastro de aluno novo</h1>
 </div>
 
 
