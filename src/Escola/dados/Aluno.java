@@ -1,6 +1,7 @@
 package Escola.dados;
 
 import java.util.Date;
+import java.util.List;
 
 public class Aluno {
 	
@@ -10,5 +11,8 @@ public class Aluno {
 	
 	public Date dt_nascimento;
 	
+	public String genero;
+	
+
 
 }
