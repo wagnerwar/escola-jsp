@@ -27,12 +27,12 @@ public class AlunoDAO extends Conexao {
             	al.genero = rs.getString(4).toString();
             	lista.add(al);
             }
+            this.fechaConexao();
 		}catch(Exception ex) {
 			System.out.println("Erro na aplicação");
 			System.out.println(ex.getMessage());
-		}finally {
-			this.fechaConexao();
 		}
+		
 		return lista;
 	}
 	
@@ -40,26 +40,24 @@ public class AlunoDAO extends Conexao {
 		boolean retorno = false;
 		try {
 			this.abreConexao();
-			if(this.validaAluno(aluno)) {
+			/*if(this.validaAluno(aluno)) {
 				java.sql.Date dt_formatado = new java.sql.Date(aluno.dt_nascimento.getTime());
 				
 				PreparedStatement stmt = this.getConexao().prepareStatement("INSERT INTO aluno(nome, dt_nascimento, genero) values(?, ?, ?)");
 				stmt.setString(1, aluno.nome);
-				stmt.setDate(2, dt_formatado);
+				stmt.setString(2, dt_formatado.toString());
 				stmt.setString(3, aluno.genero);
 				stmt.execute();
 				
 				retorno = true;
 			}else {
 				System.out.println("Aluno não validado");
-			}
-			
-		}catch(Exception ex) {
-			System.out.println("Erro na aplicação");
-			System.out.println(ex.getMessage());
-		}finally {
+			}*/
 			this.fechaConexao();
+		}catch(Exception ex) {
+			ex.printStackTrace();
 		}
+		
 		return retorno;
 	}
 	
@@ -68,7 +66,7 @@ public class AlunoDAO extends Conexao {
 		try {
 			bola = true;
 		}catch(Exception ex) {
-			
+			System.out.println(ex.getMessage());
 		}
 		
 		return bola;

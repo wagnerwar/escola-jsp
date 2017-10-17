@@ -37,6 +37,7 @@ public class CadastrarAluno extends HttpServlet {
 			AlunoDAO alDAO = new AlunoDAO();
 			boolean retorno = false;
 			retorno = alDAO.createAluno(aluno);
+		
 			if(retorno == true) {
 				out.println("<html>");
 	            out.println("<body>");
@@ -44,7 +45,11 @@ public class CadastrarAluno extends HttpServlet {
 	            out.println("</body>");
 	            out.println("</html>");
 			}else {
-				throw new Exception("Erro na inclusão");
+				out.println("<html>");
+	            out.println("<body>");
+	            out.println(" Erro na inclusão!! ");
+	            out.println("</body>");
+	            out.println("</html>");
 			}
 
 		}catch(Exception ex) {

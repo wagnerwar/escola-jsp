@@ -30,7 +30,7 @@ public class Conexao {
 		try {
 			this.conn = Conexao.getConnection();
 		}catch(Exception ex) {
-			
+			ex.printStackTrace();
 		}
 	}
 	
@@ -43,7 +43,7 @@ public class Conexao {
                 conn = DriverManager.getConnection(url);
 
         }catch(Exception ex) {
-                System.out.println(ex.getMessage());
+                ex.printStackTrace();
         }
         return conn;
 	}
