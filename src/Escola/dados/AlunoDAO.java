@@ -40,7 +40,7 @@ public class AlunoDAO extends Conexao {
 		boolean retorno = false;
 		try {
 			this.abreConexao();
-			/*if(this.validaAluno(aluno)) {
+			if(this.validaAluno(aluno)) {
 				java.sql.Date dt_formatado = new java.sql.Date(aluno.dt_nascimento.getTime());
 				
 				PreparedStatement stmt = this.getConexao().prepareStatement("INSERT INTO aluno(nome, dt_nascimento, genero) values(?, ?, ?)");
@@ -52,7 +52,7 @@ public class AlunoDAO extends Conexao {
 				retorno = true;
 			}else {
 				System.out.println("Aluno não validado");
-			}*/
+			}
 			this.fechaConexao();
 		}catch(Exception ex) {
 			ex.printStackTrace();
