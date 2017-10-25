@@ -55,6 +55,30 @@
 /*Implementando validação do formulário usando o plugin jquery-validation*/
  
 $(document).ready(function(){
+	
+	$("#cadastro").submit(function(event){
+		event.preventDefault();
+		if($(this).valid()){
+			var dados = $(this).serialize();
+			
+			$.ajax({
+				url: "cadastrarAluno",
+				data: dados,
+				dataType: "json",
+				success: function(data){
+					alert("Chamada feita com sucesso");
+					console.log(data);
+				},
+				error: function(xhr,status,error){
+					alert("Erro na chamada");
+					console.log(xhr);
+				}
+			});
+			
+			event.preventDefault();
+		}
+	});
+	
 	$("#cadastro").validate({		
 		rules: {
 			nome: {
