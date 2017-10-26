@@ -17,14 +17,14 @@
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="">Alunos <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="CadastroAluno.jsp">Cadastro</a></li>
-                  <li><a href="#">Listagem</a></li>
+                  <li><a href="Alunos.jsp">Listagem</a></li>
                 </ul>
             </li>
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="">Turmas <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="CadastroTurma.jsp">Cadastro</a></li>
-                  <li><a href="#">Listagem</a></li>
+                  <li><a href="Turmas.jsp">Listagem</a></li>
                 </ul>
             </li>
           </ul>

@@ -13,6 +13,7 @@ public class Aluno {
 	
 	public String genero;
 	
+	public String dt_nascimento_formatado;
 
 
 }

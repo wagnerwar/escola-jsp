@@ -2,10 +2,13 @@
 <script src="js/jquery-ui.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.validate.js"></script>
+<script src="js/jquery.maskedinput.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$(".data").datepicker({
 			dateFormat: "dd/mm/yy",
-		});	
+		});
+		
+		$(".data").mask("99/99/9999");
 	});
 </script>

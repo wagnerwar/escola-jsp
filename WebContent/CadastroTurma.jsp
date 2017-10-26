@@ -45,6 +45,29 @@
 /*Implementando validação do formulário usando o plugin jquery-validation*/
  
 $(document).ready(function(){
+	
+	$("#cadastro").submit(function(event){
+		event.preventDefault();
+		if($(this).valid()){
+			var dados = $(this).serialize();
+			
+			$.ajax({
+				url: "cadastrarTurma",
+				data: dados,
+				dataType: "json",
+				success: function(data){
+					alert(data.msg);
+					$("#cadastro")[0].reset();
+				},
+				error: function(xhr,status,error){
+					alert("Erro na chamada");
+					console.log(xhr);
+				}
+			});
+			event.preventDefault();
+		}
+	});
+	
 	$("#cadastro").validate({		
 		rules: {
 			nome: {

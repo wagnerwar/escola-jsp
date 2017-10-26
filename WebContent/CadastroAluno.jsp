@@ -66,8 +66,8 @@ $(document).ready(function(){
 				data: dados,
 				dataType: "json",
 				success: function(data){
-					alert("Chamada feita com sucesso");
-					console.log(data);
+					alert(data.msg);
+					$("#cadastro")[0].reset();
 				},
 				error: function(xhr,status,error){
 					alert("Erro na chamada");
