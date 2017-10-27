@@ -29,7 +29,7 @@
 				<td><%=turma.nome %></td>
 				<td><%=turma.descricao %></td>
 				<td>
-					<a href="#">
+					<a href="EditarTurma.jsp?id=<%=turma.id %>">
 						<button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i></button>
 					</a>&nbsp;
 					<a href="excluirTurma?id=<%=turma.id %>">

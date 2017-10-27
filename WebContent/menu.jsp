@@ -27,6 +27,7 @@
                   <li><a href="Turmas.jsp">Listagem</a></li>
                 </ul>
             </li>
+            <li><a href="Associar.jsp">Associar</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>

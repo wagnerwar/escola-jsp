@@ -10,13 +10,35 @@ import Escola.Exception.TurmaCadastradaException;;
 
 public class TurmaDAO extends Conexao {
 	
+	public Turma getTurma(int id){
+		Turma turma = null;
+		try {
+			this.abreConexao();
+			PreparedStatement stmt = this.getConexao().prepareStatement("SELECT id, nome, descricao FROM turma WHERE id = ?");
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				turma = new Turma();
+				turma.id = rs.getInt(1);
+				turma.nome = rs.getString(2);
+				turma.descricao = rs.getString(3);
+				break;
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			this.fechaConexao();
+		}
+		return turma;
+	}
+	
 	public List<Turma> consultarTurmaPorNome(Turma turma){
 		List<Turma> turmas = new ArrayList<Turma>();
 		try {
 			this.abreConexao();
 			java.sql.Statement stmt = this.getConexao().createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT nome FROM turma where nome like '%" + turma.nome + "%'");
-			
 			while(rs.next()) {
 				Turma tt = new Turma();
 				tt.nome = rs.getString(1).toString();
@@ -30,6 +52,8 @@ public class TurmaDAO extends Conexao {
 		}
 		return turmas;
 	}
+	
+
 	
 	public List<Turma> getTurmas(){
 		List<Turma> turmas = new ArrayList<Turma>();
@@ -87,4 +111,22 @@ public class TurmaDAO extends Conexao {
 		}
 		return retorno;
 	}
+	
+	public boolean atualizarTurma(Turma turma) throws TurmaCadastradaException, Exception {
+		boolean retorno = false;
+		try {		
+			this.abreConexao();
+			PreparedStatement stmt = this.getConexao().prepareStatement("UPDATE turma SET descricao = ? WHERE id = ?");
+			stmt.setString(1, turma.descricao);
+			stmt.setInt(2, turma.id);
+			stmt.execute();
+			retorno = true;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			this.fechaConexao();
+		}
+		return retorno;
+	}
+	
 }

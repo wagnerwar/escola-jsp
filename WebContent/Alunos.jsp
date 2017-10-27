@@ -35,7 +35,7 @@
 					<td>Feminino</td>
 				<%} %>
 				<td>
-					<a href="#>">
+					<a href="EditarAluno.jsp?id=<%=aluno.id %>">
 						<button type="button" class="btn btn-success"><i class="glyphicon glyphicon-pencil"></i></button>
 					</a>
 						&nbsp;
