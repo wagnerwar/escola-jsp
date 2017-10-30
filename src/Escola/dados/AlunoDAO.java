@@ -141,24 +141,13 @@ public class AlunoDAO extends Conexao {
 		return bola;
 	}
 	
-	public int getIdadeAluno(Aluno aluno) {
-		int idade = 0;
-		try {
-			Date dt_nascimento = aluno.dt_nascimento;
-			Date agora = new Date();
-			//Duration duration = Duration.between(agora, dt_nascimento);
-			
-		}catch(Exception ex) {
-			ex.printStackTrace();
-		}
-		return idade;
-	}
+
 	
 	public List<Aluno> getAlunosNaoAssociados(Turma turma){
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		try {
 			this.abreConexao();
-			java.sql.PreparedStatement stmt = this.getConexao().prepareStatement("SELECT  id, nome, date_format('%d/%m/%Y', dt_nascimento) as dt_nascimento, genero from aluno WHERE id not in (  SELECT a.id as id FROM aluno a INNER JOIN turma_aluno b ON b.id_aluno = a.id INNER JOIN turma c ON b.id_turma = c.id WHERE c.id = ?  )  ");
+			java.sql.PreparedStatement stmt = this.getConexao().prepareStatement("SELECT  id, nome, date_format(dt_nascimento, '%d/%m/%Y') as dt_nascimento, genero from aluno WHERE id not in (  SELECT a.id as id FROM aluno a INNER JOIN turma_aluno b ON b.id_aluno = a.id INNER JOIN turma c ON b.id_turma = c.id WHERE c.id = ?  )  ");
 			stmt.setInt(1, turma.id);
 			ResultSet rs = stmt.executeQuery();
 			SimpleDateFormat formato_saida = new SimpleDateFormat("dd/MM/yyyy");

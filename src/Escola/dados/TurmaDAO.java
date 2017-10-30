@@ -38,10 +38,11 @@ public class TurmaDAO extends Conexao {
 		try {
 			this.abreConexao();
 			java.sql.Statement stmt = this.getConexao().createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT nome FROM turma where nome like '%" + turma.nome + "%'");
+			ResultSet rs = stmt.executeQuery("SELECT id,nome FROM turma where nome like '%" + turma.nome + "%'");
 			while(rs.next()) {
 				Turma tt = new Turma();
-				tt.nome = rs.getString(1).toString();
+				tt.nome = rs.getString(2).toString();
+				tt.id = rs.getInt(1);
 				turmas.add(tt);
 			}
 			
@@ -120,6 +121,25 @@ public class TurmaDAO extends Conexao {
 			stmt.setString(1, turma.descricao);
 			stmt.setInt(2, turma.id);
 			stmt.execute();
+			retorno = true;
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			this.fechaConexao();
+		}
+		return retorno;
+	}
+	
+	public boolean associarAlunos(Turma turma, List<Aluno> alunos) {
+		boolean retorno = false;
+		try {
+			this.abreConexao();
+			PreparedStatement stmt = this.getConexao().prepareStatement("INSERT INTO turma_aluno(id_turma, id_aluno, dt_associacao) values(?,?,now())");
+			for(Aluno aluno: alunos) {
+				stmt.setInt(1, turma.id);
+				stmt.setInt(2, aluno.id);
+				stmt.execute();
+			}
 			retorno = true;
 		}catch(Exception ex) {
 			ex.printStackTrace();

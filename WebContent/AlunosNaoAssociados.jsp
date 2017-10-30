@@ -13,24 +13,34 @@
    if(turmas.size() > 0){
 	   List<Aluno> alunos = daoAluno.getAlunosNaoAssociados(turmas.get(0));
 	   if(alunos.size()> 0){
+		   int x = 0;
 		   %>
+		   <input type="hidden" name="id_turma" value="<%=turmas.get(0).id %>" >
 		   <% for(Aluno al: alunos){ %>
 		    <div class="col-sm-6 col-md-4 col-lg-3 mt-4">
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title"><%=al.nome %></h4>
                         <div class="card-text">
-                            Idade: <br>
+                            Idade: <%=al.getIdade() %><br>
                             Gênero: <% if(al.genero.equals("M")){ %> Masculino <% }else{ %>Feminino<% } %> 
                         </div>
                     </div>
                     <div class="card-footer">
-                        <span class="float-right">Aluno</span>
-                        <span><i class=""></i></span>
+                        <span><i class=""> 	
+                        	<section>  
+							<h3>Selecione</h3>					  	
+							<div class ="checkboxOne">		
+							<input type ="checkbox" value ="<%=al.id %>" id="alunos[<%=x %>]"  name="alunos"/>
+							<label for ="alunos[<%=x %>]"></label>  	
+							</div>
+							</section>
+                        	
+    					</i></span>
                     </div>
                 </div>
             </div>
-		   <% } %>
+		   <% x++;} %>
 		   <%
 	   }
 	   

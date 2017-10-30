@@ -65,3 +65,68 @@ https://bootsnipp.com/snippets/featured/bootstrap-4-card
 .card-inverse .btn {
     border: 1px solid rgba(0, 0, 0, .05);
 }
+
+/*https://stackoverflow.com/questions/1964839/how-can-i-create-a-please-wait-loading-animation-using-jquery*/
+
+.modal {
+    display:    none;
+    position:   fixed;
+    z-index:    1000;
+    top:        0;
+    left:       0;
+    height:     100%;
+    width:      100%;
+    background: rgba( 255, 255, 255, .8 ) 
+                url('../img/ajax-loader.gif') 
+                50% 50% 
+                no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;   
+}
+
+/* Anytime the body has the loading class, our
+   modal element will be visible */
+body.loading .modal {
+    display: block;
+}
+
+/**
+https://paulund.co.uk/style-checkboxes-with-css
+ * Create the slider bar
+ */
+.checkboxOne {
+	width: 40px;
+	height: 10px;
+	background: #555;
+	margin: 20px 80px;
+	position: relative;
+	border-radius: 3px;
+}
+
+/**
+ * Create the slider from the label
+ */
+.checkboxOne label {
+	display: block;
+	width: 16px;
+	height: 16px;
+	border-radius: 50%;
+	transition: all .5s ease;
+	cursor: pointer;
+	position: absolute;
+	top: -3px;
+	left: -3px;
+	background: #ccc;
+}
+
+.checkboxOne input[type=checkbox]:checked + label {
+	left: 27px;
+}
+
+.checkboxOne input[type=checkbox]{
+	display: none;
+}
