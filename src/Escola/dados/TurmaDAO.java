@@ -54,6 +54,32 @@ public class TurmaDAO extends Conexao {
 		return turmas;
 	}
 	
+	public List<Aluno> consultarAlunosAssociados(Turma turma){
+		List<Aluno> alunos = new ArrayList<Aluno>();
+		try {
+			this.abreConexao();
+			java.sql.PreparedStatement stmt = this.getConexao().prepareStatement("select a.id, a.nome, DATE_FORMAT(a.dt_nascimento,'%d/%m/%Y') AS dt_nascimento, a.genero, b.id_turma from turma_aluno b INNER JOIN aluno a ON  a.id = b.id_aluno INNER JOIN turma c ON b.id_turma = c.id WHERE c.id = ?");
+			stmt.setInt(1, turma.id);
+			ResultSet rs = stmt.executeQuery();
+			SimpleDateFormat formato_saida = new SimpleDateFormat("dd/MM/yyyy");
+			while(rs.next()) {
+				Aluno al = new Aluno();
+				al.id = rs.getInt(1);
+				al.nome = rs.getString(2);
+				al.genero = rs.getString(4);
+				al.dt_nascimento = formato_saida.parse(rs.getString(3));
+				al.dt_nascimento_formatado = formato_saida.format(al.dt_nascimento);
+				alunos.add(al);
+			}
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			this.fechaConexao();
+		}
+		return alunos;
+	}
+	
 
 	
 	public List<Turma> getTurmas(){
@@ -77,6 +103,23 @@ public class TurmaDAO extends Conexao {
 			this.fechaConexao();
 		}
 		return turmas;
+	}
+	
+	public boolean desassociarAluno(Turma turma, Aluno aluno) {
+		boolean retorno = false;
+		try {
+			this.abreConexao();
+			PreparedStatement stmt = this.getConexao().prepareStatement("delete from turma_aluno WHERE id_turma = ? and id_aluno = ?");
+			stmt.setInt(1, turma.id);
+			stmt.setInt(2, aluno.id);
+			stmt.execute();
+			
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}finally {
+			this.fechaConexao();
+		}
+		return retorno;
 	}
 	
 	public boolean excluirTurma(int id) {

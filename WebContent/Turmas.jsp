@@ -34,6 +34,9 @@
 					</a>&nbsp;
 					<a href="excluirTurma?id=<%=turma.id %>">
 						<button type="button" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+					</a>&nbsp;
+					<a href="AlunosAssociados.jsp?id_turma=<%=turma.id %>" onclick="javascript:exibeAlunosAssociados(this, event);">
+						<button type="button" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
 					</a>
 				</td>
 			</tr>
@@ -42,9 +45,33 @@
 		</div>
 		<div class="col-md-2">&nbsp;</div>
 	</div>
+	
+	<br>
+	<div class="row">
+		<div class="alunos">
+		</div>
+	</div>
 </div>
 
 <jsp:include page="rodape.jsp"></jsp:include>
 
+<script type="text/javascript">
+function exibeAlunosAssociados(obj, event){
+	event.preventDefault();
+	var link = obj.href;
+	console.log(link);
+	$.ajax({
+		url: link,
+		dataType: "html",
+		success: function(data){
+			$(".alunos").html(data);
+		},
+		error: function(xhr,status,error){
+			console.log(xhr);
+		}
+	});
+	return false;
+}
+</script>
 </body>
 </html>

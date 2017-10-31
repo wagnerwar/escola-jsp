@@ -30,6 +30,11 @@ public class AssociarAluno extends HttpServlet {
 		response.setContentType("application/json");
 		try {
 			int id_turma = Integer.parseInt(request.getParameter("id_turma"));
+
+			if(request.getParameterValues("alunos") == null) {
+				throw new Exception("Deve ser selecionado pelo menos um aluno");
+			}
+
 			String[] lista = request.getParameterValues("alunos");
 			List<Aluno> alunos = new ArrayList<Aluno>();
 			AlunoDAO daoAluno = new AlunoDAO();
@@ -44,6 +49,7 @@ public class AssociarAluno extends HttpServlet {
 			boolean retorno = daoTurma.associarAlunos(turma, alunos);
 			if(retorno == true) {
 				js.put("msg", "Alunos associados com sucesso");
+				js.put("status", "OK");
 				String saida = js.toString();
 				out.println(saida);
 			}else {
@@ -53,6 +59,7 @@ public class AssociarAluno extends HttpServlet {
 			//throw new Exception("Erro ao associar alunos");
 		}catch(Exception ex) {
 			js.put("msg", "Erro encontrado" + ex.getMessage());
+			js.put("status", "NOK");
 			String saida = js.toString();
 			out.println(saida);
 		}

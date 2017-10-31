@@ -147,8 +147,8 @@ public class AlunoDAO extends Conexao {
 		List<Aluno> alunos = new ArrayList<Aluno>();
 		try {
 			this.abreConexao();
-			java.sql.PreparedStatement stmt = this.getConexao().prepareStatement("SELECT  id, nome, date_format(dt_nascimento, '%d/%m/%Y') as dt_nascimento, genero from aluno WHERE id not in (  SELECT a.id as id FROM aluno a INNER JOIN turma_aluno b ON b.id_aluno = a.id INNER JOIN turma c ON b.id_turma = c.id WHERE c.id = ?  )  ");
-			stmt.setInt(1, turma.id);
+			java.sql.PreparedStatement stmt = this.getConexao().prepareStatement("SELECT  id, nome, date_format(dt_nascimento, '%d/%m/%Y') as dt_nascimento, genero from aluno WHERE id not in (  SELECT a.id as id FROM aluno a INNER JOIN turma_aluno b ON b.id_aluno = a.id INNER JOIN turma c ON b.id_turma = c.id )  ");
+			//stmt.setInt(1, turma.id);
 			ResultSet rs = stmt.executeQuery();
 			SimpleDateFormat formato_saida = new SimpleDateFormat("dd/MM/yyyy");
 			while(rs.next()) {

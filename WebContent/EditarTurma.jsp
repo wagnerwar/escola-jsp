@@ -66,10 +66,10 @@ $(document).ready(function(){
 				data: dados,
 				dataType: "json",
 				success: function(data){
-					alert(data.msg);
+					exibirMsg("SUCESSO!!", data.msg);
 				},
 				error: function(xhr,status,error){
-					alert("Erro na chamada");
+					exibirMsg("ERRO!!","Erro na chamada");
 					console.log(xhr);
 				}
 			});

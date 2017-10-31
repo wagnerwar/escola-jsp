@@ -75,9 +75,7 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	
 	$("#acoes").hide();
-	
 	$("#searchTurma").click(function(event){
 		event.preventDefault();
 		var nome_turma = $("#nm_turma").val();
@@ -89,8 +87,7 @@ $(document).ready(function(){
 				$("#acoes").show();
 			},
 			error: function(xhr,status,error){
-				alert("Erro na chamada");
-				console.log(xhr);
+				exibirMsg("ERRO!", data.msg);
 				$("#acoes").hide();
 			}
 		});
@@ -108,12 +105,15 @@ $(document).ready(function(){
 			data: campos,
 			dataType: "json",
 			success: function(data){
-				alert(data.msg);
-				location.href="Associar.jsp";
+				if(data.status == "OK"){
+					$("#searchTurma").click();
+					exibirMsg("SUCESSO!", data.msg);
+				}else{
+					exibirMsg("ERRO!", data.msg);	
+				}				
 			},
 			error: function(xhr,status,error){
-				alert("Erro na chamada");
-				console.log(xhr);
+				exibirMsg("ERRO!", data.msg);
 			}
 		});
 	});
