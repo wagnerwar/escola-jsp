@@ -32,7 +32,7 @@ public class Conexao {
         java.sql.Connection conn = null;
         try {
         	Class.forName("com.mysql.jdbc.Driver");
-        	String url = "jdbc:mysql://localhost/aluno?user=root&password=amesma";
+        	String url = "jdbc:mysql://localhost/aluno?user=usuario&password=amesma";
         	conn = DriverManager.getConnection(url);
         }catch(Exception ex) {
                 ex.printStackTrace();
