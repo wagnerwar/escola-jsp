@@ -11,8 +11,8 @@
 <%
 // Verificando se usuário está logado
 Cookie[] cookies = request.getCookies();
+CookieManager manager = new CookieManager();
 if(cookies != null){
-	CookieManager manager = new CookieManager();
 	if(manager.checaUsuarioAutenticado(cookies) == false){
 		response.sendRedirect("Login.jsp");
 	}
@@ -21,7 +21,7 @@ if(cookies != null){
 }
 %>
 <div class="container bemvindo">
-	<h1>Seja bemvindo</h1>
+	<h1>Seja bemvindo <%=manager.getLogin() %></h1>
 </div>
 
 

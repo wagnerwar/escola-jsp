@@ -7,6 +7,14 @@ public class CookieManager {
 	private final String senha = "admin";
 	public final String chave = "usuario";
 	
+	public String getLogin() {
+		return this.login;
+	}
+	
+	public String getChave() {
+		return this.chave;
+	}
+	
 	public Cookie autenticaUsuario(String login_input, String senha_input) {
 		Cookie cookie = null;
 		try {
@@ -18,6 +26,21 @@ public class CookieManager {
 			ex.printStackTrace();
 		}
 		return cookie;
+	}
+
+	public Cookie getUsuarioAutenticado(Cookie[] cookies) {
+		Cookie retorno = null;
+		try {
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals(this.chave)){
+					retorno = cookie;
+					break;
+				}
+			}
+		}catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		return retorno;
 	}
 	
 	public boolean checaUsuarioAutenticado(Cookie[] cookies) {

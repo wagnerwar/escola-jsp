@@ -1,4 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="Escola.dados.TurmaDAO,Escola.dados.Turma,java.util.ArrayList,java.util.List, Escola.Cookie.CookieManager" %>
+
 <nav class="navbar navbar-inverse navbar-fixed-top">
+<%
+// Verificando se usuário está logado
+Cookie[] cookies = request.getCookies();
+CookieManager manager = new CookieManager();
+if(cookies != null){
+	if(manager.checaUsuarioAutenticado(cookies) == false){
+		response.sendRedirect("Login.jsp");
+	}else{	
+%>
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -28,7 +40,9 @@
                 </ul>
             </li>
             <li><a href="Associar.jsp">Associar</a></li>
+            <li><a href="deslogin">Sair</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
+      <% } } %>
 </nav>
