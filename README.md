@@ -8,4 +8,5 @@ Ter configurado o TOMCAT para rodar com o ECLIPSE.
 
 Ter a referência do pacote 'mysql-connector-java-5.1.44' associado ao projeto (Necessário baixar o pacote e apontar o caminho)
 
+Depois, deve-se configurar a base de dados da aplicação (Executar os passos contidos no arquivo 'instrucoes.sql')
 
