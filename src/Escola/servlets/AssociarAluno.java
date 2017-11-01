@@ -12,13 +12,13 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
-
 import Escola.dados.Aluno;
 import Escola.dados.AlunoDAO;
 import Escola.dados.Turma;
 import Escola.dados.TurmaDAO;
 import org.json.JSONException;
+import org.json.JSONObject;
+
 
 @WebServlet("/AssociarAluno")
 public class AssociarAluno extends HttpServlet {
